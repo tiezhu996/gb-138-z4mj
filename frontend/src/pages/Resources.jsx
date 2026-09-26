@@ -45,10 +45,17 @@ const Resources = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
               </svg>
             </Link>
-            <div>
+            <div className="flex-1">
               <h1 className="text-2xl font-bold text-warm-800">资源对接</h1>
               <p className="text-xs text-warm-500">全国安宁疗护机构查询</p>
             </div>
+            <Link
+              to="/ledger"
+              className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full hover:shadow-lg transition-all font-medium text-sm"
+            >
+              <span>📒</span>
+              <span>床位台账</span>
+            </Link>
           </div>
         </div>
       </header>

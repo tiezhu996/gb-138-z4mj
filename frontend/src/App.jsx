@@ -4,6 +4,7 @@ import Symptoms from './pages/Symptoms';
 import FamilyGuide from './pages/FamilyGuide';
 import Psychological from './pages/Psychological';
 import Resources from './pages/Resources';
+import Ledger from './pages/Ledger';
 import WishList from './pages/WishList';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/family" element={<FamilyGuide />} />
         <Route path="/psychological" element={<Psychological />} />
         <Route path="/resources" element={<Resources />} />
+        <Route path="/ledger" element={<Ledger />} />
         <Route path="/wishlist" element={<WishList />} />
       </Routes>
     </Router>

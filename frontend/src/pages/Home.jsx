@@ -37,6 +37,15 @@ const Home = () => {
       bgColor: 'bg-amber-50',
       description: '全国安宁疗护机构查询，按地区筛选',
       path: '/resources'
+    },
+    {
+      id: 'ledger',
+      title: '床位台账',
+      icon: '📒',
+      gradient: 'from-teal-400 to-cyan-600',
+      bgColor: 'bg-teal-50',
+      description: '全家共用的联系台账，谁问过、结果怎样都有记录',
+      path: '/ledger'
     }
   ];
 

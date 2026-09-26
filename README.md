@@ -26,6 +26,19 @@ docker compose down -v --remove-orphans
 - 临终关怀知识导航
 - 症状照护与心理支持信息
 - 资源、愿望清单和家属指南
+- 床位台账（/ledger）：全家共用的机构联系记录，数据存 PostgreSQL，换设备、重启服务都在
+  - 在机构卡片上登记一次联系：打电话的人、一句备注、结果（接通有床 / 接通没床 / 没人接）
+  - 每次联系单独留痕，卡片显示最近一次的结果和时间，可展开查看全部记录
+  - 排序：已谈好的带标记排最前，接通有床的其次，暂时没床的沉底；之后登记「接通有床」会自动翻回前面
+
+## 台账 API
+
+| 方法 | 路径 | 说明 |
+| --- | --- | --- |
+| GET | /api/ledger | 各机构谈好标记、联系次数、最近一次联系 |
+| POST | /api/ledger/contacts | 登记联系：`{ institutionId, caller, note, result }`，result ∈ `available` / `unavailable` / `no_answer` |
+| GET | /api/ledger/contacts?institutionId=N | 某机构全部联系记录，新的在前 |
+| PUT | /api/ledger/institutions/:id/agreed | 标记/取消已谈好：`{ agreed: true|false }` |
 
 ## 本地开发
 
