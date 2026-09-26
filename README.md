@@ -26,6 +26,19 @@ docker compose down -v --remove-orphans
 - 临终关怀知识导航
 - 症状照护与心理支持信息
 - 资源、愿望清单和家属指南
+- 资源对接 · 家庭台账：家属轮流打电话问床位，谁打的、结果如何都记在数据库里，
+  换设备打开、服务重启记录都在。已谈妥的排最前，暂时没床的沉底，有床了自动翻回前面。
+
+## 台账接口
+
+| 方法 | 路径 | 说明 |
+| --- | --- | --- |
+| GET | `/api/institutions` | 机构列表（含最近一次联系结果、联系次数、谈妥标记，已按台账规则排序） |
+| POST | `/api/institutions/:id/contacts` | 登记一次联系：`{ "caller": "大姐", "result": "available", "note": "一句备注" }`，`result` 取 `available`（接通有床）/ `unavailable`（接通没床）/ `no_answer`（没人接） |
+| GET | `/api/institutions/:id/contacts` | 该机构的全部联系记录，新的在前 |
+| POST | `/api/institutions/:id/confirmed` | 标记/取消已谈妥：`{ "confirmed": true }` |
+
+联系记录和谈妥标记保存在 PostgreSQL 的 `db_data` 数据卷中，容器重建、服务重启都不会丢。
 
 ## 本地开发
 
@@ -56,7 +69,7 @@ docker compose up -d db
 | 层级 | 技术 |
 | --- | --- |
 | 前端 | React + Vite |
-| 后端 | Node.js health API |
+| 后端 | Node.js API（pg 连接数据库） |
 | 数据库 | PostgreSQL |
 | 部署 | Docker Compose + Nginx |
 
